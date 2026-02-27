@@ -1,0 +1,31 @@
+model:
+  kind: graphcast
+  preset_name: GraphCast_small
+
+  # "gcs" to load DeepMind public checkpoints, "local" for your own.
+  source: local
+
+  gcs:
+    bucket: dm_graphcast
+    # GraphCast assets typically live under this prefix in the public bucket.
+    # Set appropriately for your chosen checkpoint layout.
+    dir_prefix: "graphcast/"
+
+  checkpoint:
+    local_path: null
+    # Relative to `model.gcs.dir_prefix`.
+    blob_relpath: null
+
+  stats:
+    diffs_stddev_by_level:
+      local_path: null
+      blob_relpath: null
+    mean_by_level:
+      local_path: null
+      blob_relpath: null
+    stddev_by_level:
+      local_path: null
+      blob_relpath: null
+
+  graphcast:
+    gradient_checkpointing: true

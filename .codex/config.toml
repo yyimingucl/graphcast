@@ -1,0 +1,7 @@
+# ~/.codex/config.toml
+project_doc_fallback_filenames = [
+  "CONTRIBUTING.md",
+  "agents.md"
+  "hydra.md"
+  "benchmark.md"
+]

@@ -1,0 +1,31 @@
+
+kind: gencast
+preset_name: "GenCast 1p0deg Mini <2019"
+
+source: local
+
+gcs:
+  bucket: dm_graphcast
+  dir_prefix: "gencast/"
+
+checkpoint:
+  local_path: null
+  blob_relpath: null
+
+stats:
+  diffs_stddev_by_level:
+    local_path: null
+    blob_relpath: stats/diffs_stddev_by_level.nc
+  mean_by_level:
+    local_path: null
+    blob_relpath: stats/mean_by_level.nc
+  stddev_by_level:
+    local_path: null
+    blob_relpath: stats/stddev_by_level.nc
+  min_by_level:
+    local_path: null
+    blob_relpath: stats/min_by_level.nc
+
+gencast:
+  ensemble_size: 8
+  force_gpu_compatible_attention: true

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GraphCast/GenCast benchmark results",
+  "type": "object",
+  "required": ["run_metadata", "timing", "metrics"],
+  "properties": {
+    "run_metadata": {
+      "type": "object",
+      "required": ["timestamp_utc", "model_kind", "preset_name", "data_kind"],
+      "properties": {
+        "timestamp_utc": { "type": "string" },
+        "model_kind": { "type": "string", "enum": ["graphcast", "gencast"] },
+        "preset_name": { "type": "string" },
+        "data_kind": { "type": "string", "enum": ["era5", "hres"] },
+        "seed": { "type": "integer" },
+        "jax_platform": { "type": "string" },
+        "jax_devices": { "type": "array", "items": { "type": "string" } },
+        "versions": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "timing": {
+      "type": "object",
+      "required": ["warmup_steps", "timed_repeats", "repeat_seconds", "median_seconds", "p95_seconds"],
+      "properties": {
+        "warmup_steps": { "type": "integer", "minimum": 0 },
+        "timed_repeats": { "type": "integer", "minimum": 1 },
+        "repeat_seconds": { "type": "array", "items": { "type": "number" } },
+        "median_seconds": { "type": "number" },
+        "p95_seconds": { "type": "number" },
+        "throughput_samples_per_second": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "probe": { "type": "string" },
+        "before": { "type": "object" },
+        "after": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["overall"],
+      "properties": {
+        "overall": { "type": "object" },
+        "per_variable": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "visualizations": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "config": { "type": "object" }
+  },
+  "additionalProperties": true
+}

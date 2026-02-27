@@ -1,0 +1,23 @@
+
+kind: era5
+
+gcs:
+  bucket: dm_graphcast
+  # GenCast demo datasets live under this prefix.
+  dir_prefix: "gencast/"
+
+dataset:
+  # Relative to `data.gcs.dir_prefix`.
+  blob_relpath: null
+  # Optional: limit to first N frames after loading (useful to match notebook
+  # demos that pick small `steps-*` datasets).
+  max_time_frames: 3
+
+batch_index: 0
+validate_resolution_and_levels: true
+
+target_lead_times:
+  # Matches the notebook pattern: use all timesteps except the input frames.
+  # Assumes the dataset time coordinate is uniformly spaced.
+  mode: all_but_inputs
+  input_frames: 2

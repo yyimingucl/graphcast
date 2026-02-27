@@ -1,0 +1,35 @@
+defaults:
+  - model: graphcast
+  - data: era5
+  - metrics: default
+  - runtime: gpu
+  - _self_
+
+seed: 0
+
+experiment:
+  # Used to create a stable folder under `save_dir/eval/<name>/...`.
+  name: default
+
+# Root folder for cached assets + outputs.
+save_dir: /work/scratch-pw5/y_yiming/graphcast
+
+io:
+  # Deprecated: kept for backward compatibility; assets are cached under
+  # `save_dir/eval/<experiment.name>/assets/...`.
+  cache_dir: ${save_dir}/_deprecated_cache
+
+benchmark:
+  warmup_steps: 1
+  timed_repeats: 5
+  num_steps_per_chunk: 1
+  block_until_ready: true
+
+output:
+  write_json: true
+  json_filename: results.json
+
+visualization:
+  save_visualizations: true
+  variables: ["2m_temperature"]
+  max_steps: 1

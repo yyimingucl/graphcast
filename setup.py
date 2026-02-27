@@ -30,6 +30,7 @@ setup(
     url="https://github.com/deepmind/graphcast",
     packages=["graphcast"],
     install_requires=[
+        "absl-py",
         "cartopy",
         "chex",
         "colabtools",
@@ -37,10 +38,12 @@ setup(
         "dinosaur-dycore",
         "dm-haiku",
         "dm-tree",
+        "hydra-core",
         "jax",
         "jraph",
         "matplotlib",
         "numpy",
+        "omegaconf",
         "pandas",
         "rtree",
         "scipy",
@@ -49,6 +52,11 @@ setup(
         "xarray",
         "xarray_tensorstore"
     ],
+    extras_require={
+        "gcs": [
+            "google-cloud-storage",
+        ],
+    },
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Science/Research",

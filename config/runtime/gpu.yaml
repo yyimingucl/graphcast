@@ -1,0 +1,10 @@
+# If true and multiple GPUs are visible, GenCast ensemble can be parallelized
+# across devices via pmap. Requires ensemble_size % num_devices == 0.
+use_pmap_for_gencast_ensemble: false
+
+log_nvidia_smi: true
+memory_probe: nvidia_smi  # or "none"
+
+# JAX GPU allocator knobs (set only if env var not already set).
+xla_preallocate: false
+xla_mem_fraction: 0.85

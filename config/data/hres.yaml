@@ -1,0 +1,17 @@
+
+kind: hres
+
+gcs:
+  bucket: dm_graphcast
+  dir_prefix: "gencast/"
+
+dataset:
+blob_relpath: null
+max_time_frames: null
+
+batch_index: 0
+validate_resolution_and_levels: true
+
+target_lead_times:
+  mode: all_but_inputs
+  input_frames: 2

@@ -1,0 +1,6 @@
+compute_weighted_latitude: true
+compute_weighted_level: true
+# Empty means "all model targets".
+variables: []
+report_per_variable: true
+nrmse_denominator: target_std

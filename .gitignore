@@ -1,8 +1,16 @@
 # Agents
-agents.md
+# agents.md
 
 # Ignore files
 graphcast.egg-info/*
 
 # cache files
 __pycache__/
+
+# Hydra outputs
+outputs/
+multirun/
+.hydra/
+
+# Local cache
+.cache/
