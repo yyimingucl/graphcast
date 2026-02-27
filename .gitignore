@@ -1,0 +1,8 @@
+# Agents
+agents.md
+
+# Ignore files
+graphcast.egg-info/*
+
+# cache files
+__pycache__/

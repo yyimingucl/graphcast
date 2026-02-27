@@ -99,6 +99,8 @@ the coordinate, but that wasn't going to work with a jax array anyway.
 import collections
 import contextlib
 import contextvars
+import numbers
+import jax.core
 from typing import Any, Callable, Iterator, Mapping, Optional, Union, Tuple, TypeVar, cast
 from typing import Hashable  # pylint: disable=deprecated-class
 
@@ -440,8 +442,21 @@ class JaxArrayWrapper(np.lib.mixins.NDArrayOperatorsMixin):
     self.jax_array = jax_array
 
   def __array_ufunc__(self, ufunc, method, *args, **kwargs):
+    # Allow scalar values (e.g. np.nan or Python floats) to participate in
+    # ufuncs with wrapped JAX arrays. Without this, operations such as
+    # `dataset * np.nan` return NotImplemented and surface as TypeError in
+    # notebooks.
+    # Accept JAX tracers, wrapped arrays, numpy arrays/scalars and Python numbers.
+    allowed = (
+        jax.Array,
+        np.ndarray,
+        np.generic,
+        jax.core.Tracer,
+        type(self),
+        numbers.Number,
+    )
     for x in args:
-      if not isinstance(x, (jax.typing.ArrayLike, type(self))):
+      if not isinstance(x, allowed):
         return NotImplemented
     if method != '__call__':
       return NotImplemented
